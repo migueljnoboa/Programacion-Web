@@ -32,17 +32,27 @@ public class Main {
         HttpClient client = HttpClient.newHttpClient();
 
         // Creando el request usand el URL del input.
-        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(URL)).build();
+        HttpRequest request;
 
         // Creando respuesta antes del try catch
         HttpResponse respuesta;
 
         try {
             // Mandando y reciviendo la respuesta del Servidor
+            request = HttpRequest.newBuilder().uri(URI.create(URL)).build();
+        }catch (Exception e){
+            //System.out.println(e);
+            System.out.println("\nNo se encontro URL valido. \nRecordar poner en formato: http://... o https://... e intentar otra vez");
+            return;
+        }
+
+        try {
+            // Mandando y reciviendo la respuesta del Servidor
             respuesta = client.send(request, HttpResponse.BodyHandlers.ofString());
         }catch (Exception e){
-            System.out.println(e);
-            System.out.println("No se ha podido encontrar, conectar y o recibir una respuesta del servidor.");
+            //System.out.println(e);
+            System.out.println("\nNo se ha podido conectar y o recibir una respuesta del servidor.");
+            System.out.println("Revise el URL e intente otra vez.");
             return;
         }
 
@@ -60,6 +70,7 @@ public class Main {
         Document doc;
         try {
             doc = Jsoup.connect(URL).get();
+
         }catch (Exception e){
             System.out.println(e);
             System.out.println("Jsoup ha fallado");
@@ -118,7 +129,42 @@ public class Main {
             count++;
         }
 
-        //System.out.println(doc.forms());
+        // Mandando forms
+        Integer cantidad = 1;
 
+        for (FormElement f : formsPost){
+            System.out.println("Formulario " + cantidad + ":");
+
+            String act = f.attr("action").toString();
+
+            var testAction = act.toString().split("/");
+            if (!testAction[0].contains("http")){
+                var strs = URL.toString().split("/");
+                act = (strs[0]+strs[1] + "//" + strs[2] + act);
+            }
+
+            //System.out.println(act);
+
+            // Try catch para mandar los formularios.
+            try{
+                //Haciendo el Request a la direccion del action.
+                Connection.Response res =
+                        Jsoup.connect(act).method(Connection.Method.POST).
+                        header("Date", "Sun").data("asignatura", "practica1").execute();
+
+                System.out.println(res.statusCode());
+                System.out.println(res.body());
+                System.out.println();
+            }catch (Exception e){
+                System.out.println("No se pudo mandar el form");
+            }
+
+
+            //System.out.println(act + "\n");
+            //System.out.println(f);
+        }
+
+        //System.out.println(doc);
+        //doc.select("form[method=post]").forms().get(0).submit().execute()
     }
 }
