@@ -150,7 +150,7 @@ public class Main {
                 //Haciendo el Request a la direccion del action.
                 Connection.Response res =
                         Jsoup.connect(act).method(Connection.Method.POST).
-                        header("Date", "Sun").data("asignatura", "practica1").execute();
+                        header("matricula-id", "10137875").data("asignatura", "practica1").execute();
 
                 System.out.println(res.statusCode());
                 System.out.println(res.body());
