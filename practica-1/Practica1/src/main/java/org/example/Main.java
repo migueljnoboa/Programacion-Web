@@ -154,6 +154,8 @@ public class Main {
 
                 System.out.println(res.statusCode());
                 System.out.println(res.body());
+                System.out.println(res.headers());
+
                 System.out.println();
             }catch (Exception e){
                 System.out.println("No se pudo mandar el form");
