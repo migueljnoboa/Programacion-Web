@@ -2,7 +2,8 @@ package org.example;
 
 import io.javalin.Javalin;
 import io.javalin.http.staticfiles.Location;
-import org.example.Controlers.Login;
+import org.example.Controlers.*;
+import org.example.Data.Data;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
@@ -25,7 +26,13 @@ public class Main {
         // Iniciando en el Puerto 7000
         app.start(7000);
 
+        Data.getInstance();
+
         new Login(app).applyPaths();
+
+        new Inicio(app).applyPaths();
+
+        new Create(app).applyPaths();
 
     }
 }

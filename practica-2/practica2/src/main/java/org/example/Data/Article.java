@@ -1,5 +1,6 @@
 package org.example.Data;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -11,7 +12,7 @@ public class Article {
     private User author;
     private Date date;
 
-    private List<Comment> comments;
+    private List<Comment> comments = new ArrayList<>();;
     private List<Tag> tags;
 
     public long getId() {
