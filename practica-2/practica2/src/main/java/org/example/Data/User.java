@@ -8,6 +8,8 @@ public class User {
     private Boolean administrator;
     private Boolean author;
 
+    public user()
+
     public String getUsername() {
         return username;
     }

@@ -1,6 +1,7 @@
 package org.example.Controlers;
 
 import io.javalin.Javalin;
+import org.example.Data.Data;
 
 public class Inicio extends BaseController{
 

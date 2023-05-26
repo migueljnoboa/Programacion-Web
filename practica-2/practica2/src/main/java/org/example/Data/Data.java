@@ -18,6 +18,18 @@ public class Data {
         return instance;
     }
 
+    // Creating new User
+    public User addUser(String username, String password, String name){
+        User newUser = new User();
+        newUser.setUsername(username);
+        newUser.setPassword(password);
+        newUser.setName(name);
+        newUser.setAuthor(Boolean.FALSE);
+        newUser.setAdministrator(Boolean.FALSE);
+        users.add(newUser);
+        return newUser;
+    }
+
     public User findUser(String username, String password) {
 
         for (User u : users){

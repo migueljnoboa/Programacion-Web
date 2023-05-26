@@ -30,9 +30,13 @@ public class Login extends BaseController{
             // Find user
             User user = Data.getInstance().findUser(username, password);
 
+            System.out.println(user.getUsername());
 
             if (user == null){
+                System.out.println("nah");
+            }
 
+            if (user == null){
                 // On fail log in
                 ctx.redirect("/log-in.html");
             }
@@ -49,8 +53,13 @@ public class Login extends BaseController{
         app.post("/sign-up-filter", ctx -> {
 
             // Todo: Crear usuario
+            String username = ctx.formParam("username");
+            String password = ctx.formParam("password");
+            String name = ctx.formParam("name");
+            User user = Data.getInstance().addUser(username, password, name);
 
             // Todo: Hacer la session
+            ctx.sessionAttribute("user", user);
 
             // Redirect al inicio o implementar cookie para el ultimo path
             ctx.redirect("inicio.html");
@@ -64,7 +73,7 @@ public class Login extends BaseController{
             ctx.req().getSession().invalidate();
 
             // Redirect al inicio o implementar cookie para el ultimo path
-            ctx.redirect("inicio.html");
+            ctx.redirect("/inicio.html");
         });
     }
 }
