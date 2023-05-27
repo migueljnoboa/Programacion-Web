@@ -13,7 +13,7 @@ public class Inicio extends BaseController{
     public void applyPaths() {
 
         app.before("/", ctx -> {
-            ctx.redirect("/inicio.html");
+            ctx.redirect("/html/inicio.html");
         });
     }
 }

@@ -31,19 +31,15 @@ public class Login extends BaseController{
             User user = Data.getInstance().findUser(username, password);
 
             if (user == null){
-                System.out.println("nah");
-            }
-
-            if (user == null){
                 // On fail log in
-                ctx.redirect("/log-in.html");
+                ctx.redirect("/html/log-in.html");
             }
             else{
                 // Add user to session
                 ctx.sessionAttribute("user", user);
 
                 // Redirect al inicio o implementar cookie para el ultimo path
-                ctx.redirect("inicio.html");
+                ctx.redirect("/html/inicio.html");
             }
         });
 
@@ -60,7 +56,7 @@ public class Login extends BaseController{
             ctx.sessionAttribute("user", user);
 
             // Redirect al inicio o implementar cookie para el ultimo path
-            ctx.redirect("inicio.html");
+            ctx.redirect("/html/inicio.html");
 
         });
 
@@ -71,7 +67,7 @@ public class Login extends BaseController{
             ctx.req().getSession().invalidate();
 
             // Redirect al inicio o implementar cookie para el ultimo path
-            ctx.redirect("/inicio.html");
+            ctx.redirect("/html/inicio.html");
         });
     }
 }

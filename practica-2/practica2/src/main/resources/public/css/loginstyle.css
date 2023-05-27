@@ -1,0 +1,33 @@
+html,
+
+body {
+    height: 100%;
+}
+
+body {
+    background-color: #262626;
+}
+
+.form-signin {
+    max-width: 330px;
+    padding: 15px;
+}
+
+.form-signin .form-floating:focus-within {
+    z-index: 2;
+}
+
+.form-signin input[type="password"] {
+    margin-bottom: 15px;
+}
+
+.white {
+    color: white;
+}
+
+.nav li {
+    border-color: dodgerblue;
+    background-color: darkgray;
+    margin-right: 6px;
+    border-radius: 5px;
+}
