@@ -30,8 +30,6 @@ public class Login extends BaseController{
             // Find user
             User user = Data.getInstance().findUser(username, password);
 
-            System.out.println(user.getUsername());
-
             if (user == null){
                 System.out.println("nah");
             }

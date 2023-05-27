@@ -10,22 +10,18 @@ public class Data {
     private List<Article> articles = new ArrayList<>();;
     private List<Tag> tags = new ArrayList<>();;
     private List<Comment> comments = new ArrayList<>();;
+    private static Data data = null;
 
     public static Data getInstance(){
-        if (instance == null){
-            instance = new Data();
+        if (data == null){
+            data = new Data();
         }
-        return instance;
+        return data;
     }
 
     // Creating new User
     public User addUser(String username, String password, String name){
-        User newUser = new User();
-        newUser.setUsername(username);
-        newUser.setPassword(password);
-        newUser.setName(name);
-        newUser.setAuthor(Boolean.FALSE);
-        newUser.setAdministrator(Boolean.FALSE);
+        User newUser = new User(username, password, name, Boolean.FALSE, Boolean.FALSE);
         users.add(newUser);
         return newUser;
     }
@@ -33,7 +29,7 @@ public class Data {
     public User findUser(String username, String password) {
 
         for (User u : users){
-            if (u.getUsername() == username && u.getPassword() == password){
+            if (u.getUsername().equals(username) && u.getPassword().equals(password)){
                 return u;
             }
         }

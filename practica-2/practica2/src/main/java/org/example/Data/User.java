@@ -8,7 +8,14 @@ public class User {
     private Boolean administrator;
     private Boolean author;
 
-    public user()
+    public User(String username, String password, String name, boolean administrator, Boolean author) {
+        super();
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.author = author;
+        this.administrator = administrator;
+    }
 
     public String getUsername() {
         return username;

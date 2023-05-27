@@ -11,9 +11,19 @@ public class Article {
     private String body;
     private User author;
     private Date date;
-
     private List<Comment> comments = new ArrayList<>();;
     private List<Tag> tags;
+
+    public Article(long id, String title, String body, User author, Date date, List<Comment> comments, List<Tag> tags){
+        super();
+        this.id = id;
+        this.title = title;
+        this.body = body;
+        this.author = author;
+        this.date = date;
+        this.comments = comments;
+        this.tags = tags;
+    }
 
     public long getId() {
         return id;
