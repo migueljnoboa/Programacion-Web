@@ -56,4 +56,26 @@ public class User {
     public void setAuthor(Boolean author) {
         this.author = author;
     }
+
+    public User makeAuthor(){
+        this.author = Boolean.TRUE;
+        return this;
+    }
+
+    public User makeAdmin(){
+        this.author = Boolean.TRUE;
+        this.administrator = Boolean.TRUE;
+        return this;
+    }
+
+    public User removeAuthor(){
+        this.author = Boolean.FALSE;
+        this.administrator = Boolean.FALSE;
+        return this;
+    }
+
+    public User removeAdmin(){
+        this.administrator = Boolean.FALSE;
+        return this;
+    }
 }

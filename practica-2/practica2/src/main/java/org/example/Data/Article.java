@@ -11,7 +11,7 @@ public class Article {
     private String body;
     private User author;
     private Date date;
-    private List<Comment> comments = new ArrayList<>();;
+    private List<Comment> comments = new ArrayList<>();
     private List<Tag> tags;
 
     public Article(long id, String title, String body, User author, Date date, List<Comment> comments, List<Tag> tags){
