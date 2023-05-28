@@ -24,10 +24,3 @@ body {
 .white {
     color: white;
 }
-
-.nav li {
-    border-color: dodgerblue;
-    background-color: darkgray;
-    margin-right: 6px;
-    border-radius: 5px;
-}
