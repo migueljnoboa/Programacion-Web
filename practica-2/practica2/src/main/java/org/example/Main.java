@@ -28,10 +28,6 @@ public class Main {
 
         Data.getInstance();
 
-        Data.getInstance().addUser("miguel", "12345", "miguel");
-
-        System.out.println(Data.getInstance().findUser("miguel", "12345"));
-
         new Login(app).applyPaths();
 
         new Inicio(app).applyPaths();
