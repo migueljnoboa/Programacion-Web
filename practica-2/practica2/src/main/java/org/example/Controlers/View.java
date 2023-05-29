@@ -60,6 +60,8 @@ public class View extends BaseController{
             // Render view.html with thymeleaf with the map
             ctx.render("public/html/view.html", map);
 
+            ctx.cookie("articleId", idStr);
+
         });
 
         app.before("/delete/{articleId}", ctx -> {
@@ -67,6 +69,30 @@ public class View extends BaseController{
             Data.getInstance().deleteArticle(ctx.pathParam("articleId"));
             ctx.redirect("/home");
 
+        });
+
+        app.before("/make-comment", ctx -> {
+
+            System.out.println(ctx.cookie("articleId"));
+
+            String idStr = ctx.cookie("articleId");
+            User user = ctx.sessionAttribute("user");
+            if (user == null){
+                ctx.redirect("/view/" + idStr);
+            }
+
+        });
+
+        app.post("/make-comment", ctx -> {
+            User user = ctx.sessionAttribute("user");
+            String idStr = ctx.cookie("articleId");
+            Long id = Long.parseLong(idStr);
+
+            String comment = ctx.formParam("comment-Body");
+
+            Data.getInstance().addComment(comment, user, Data.getInstance().findArticle(id));
+
+            ctx.redirect("/view/" + idStr);
         });
     }
 

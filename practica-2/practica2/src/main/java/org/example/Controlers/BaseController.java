@@ -37,8 +37,10 @@ public abstract class BaseController {
         }
 
         String admin = "";
-        if (user.getAdministrator()){
-            admin = "text";
+        if (user != null){
+            if (user.getAdministrator()){
+                admin = "Admin";
+            }
         }
 
         map.put("loginText", loginText);

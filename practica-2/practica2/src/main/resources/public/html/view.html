@@ -23,6 +23,7 @@
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     <li><a href="/home" class="nav-link px-2 text-white">Home</a></li>
                     <li><a href="/create" class="nav-link px-2 text-white">Create</a></li>
+                    <li><a href="/admin" th:text="${admin}" class="nav-link px-2 text-white"></a></li>
                 </ul>
 
 
@@ -38,33 +39,41 @@
 </head>
 
 <body class="bg-dark">
-<main class="article text-center bg-dark bg-gradient white">
+<main class="article bg-dark bg-gradient white">
 
     <!-- Modelo para los parrafos -->
     <div class="article py-4">
-        <a><span class=" h1 article-title text-center" th:text="${a.title}">Title</span></a><br>
-        <span class="m-3 h2 text-center" th:text="${a.author.name}">Author</span><br>
-        <p class="mx-5 my-4 article-body text-justified" th:text="${a.body}">Body</p>
 
+        <!-- Title and author -->
+        <div class="text-center">
+            <a><span class=" h1 article-title text-center" th:text="${a.title}">Title</span></a><br>
+            <span class="m-3 h2 text-center" th:text="${a.author.name}">Author</span><br>
+        </div>
 
+        <!-- Text -->
+        <div>
+            <p class="mx-5 my-4 article-body text-justified" th:text="${a.body}">Body</p>
+        </div>
+
+        <!-- Tags -->
         <div class="d-flex justify-content-center gap-2 py-2">
             <span class="badge text-bg-warning rounded-pill article-tag m-1" th:each="t : ${a.tags}" th:text="${t.getTag()}">Tags</span>
         </div>
 
         <!-- Erase Button -->
-        <div class="text-right">
+        <div>
             <a th:href="${deletePath}"><input class="btn btn-danger m-5"  th:type="${deleteType}"  value="Delete Article"></a>
         </div>
 
-
         <!-- Make Comment -->
-        <form action="/comment">
-            <div class="form-outline w-50 mb-4 text-center">
-                <textarea class="form-control text-center mx-5 justify-content-center" id="textAreaExample6" rows="3"></textarea>
-            </div>
-            <input type="submit" class="btn btn-primary mx-5 mb-5">
-        </form>
+        <div class="m-5">
+            <span class="my-3 h2 text-center">Comments</span><br>
 
+            <form action="/make-comment" method="post">
+                <textarea class="form-control my-3" id="comment-Body" name="comment-Body" rows="3" placeholder="Write a Comment..."></textarea>
+                <input type="submit" class="btn btn-primary my-3" value="Send">
+            </form>
+        </div>
 
         <!-- Display comments -->
         <div class="article-comment my-4" th:each="c : ${a.getComments()}">
