@@ -4,6 +4,9 @@ import io.javalin.Javalin;
 import org.example.Data.Data;
 import org.example.Data.User;
 
+import java.util.HashMap;
+import java.util.Map;
+
 // Lo que tiene que ver con el Login y Sign-Up
 public class Login extends BaseController{
 
@@ -15,12 +18,27 @@ public class Login extends BaseController{
     @Override
     public void applyPaths() {
 
-        // Cuando viene a la pagina, si ya estaba loged-in, lo hara automaticamente
-        app.before("/", ctx -> {
+        // GET login
+        app.get("/login", ctx -> {
 
+            // Thymeleaf
+            Map<String,Object> map = getBasicMap(ctx);
+
+            // Go to inicio.html
+            ctx.render("public/html/log-in.html", map);
         });
 
-        // Log-In (viene de log-in.html)
+        // GET signUp
+        app.get("/signUp", ctx -> {
+
+            // Thymeleaf
+            Map<String,Object> map = getBasicMap(ctx);
+
+            // Go to inicio.html
+            ctx.render("public/html/sign-up.html", map);
+        });
+
+        // POST login -> /home
         app.post("/log-in-filter", ctx -> {
 
             // Obtain parameters from log-in.html
@@ -32,31 +50,30 @@ public class Login extends BaseController{
 
             if (user == null){
                 // On fail log in
-                ctx.redirect("/html/log-in.html");
+                ctx.redirect("/login");
             }
             else{
                 // Add user to session
                 ctx.sessionAttribute("user", user);
 
                 // Redirect al inicio o implementar cookie para el ultimo path
-                ctx.redirect("/html/inicio.html");
+                ctx.redirect("/home");
+
             }
         });
 
-        // Sign-Up (viene de sing-up.html)
+        // POST sign up -> /home
         app.post("/sign-up-filter", ctx -> {
 
-            // Todo: Crear usuario
             String username = ctx.formParam("username");
             String password = ctx.formParam("password");
             String name = ctx.formParam("name");
             User user = Data.getInstance().addUser(username, password, name);
 
-            // Todo: Hacer la session
             ctx.sessionAttribute("user", user);
 
             // Redirect al inicio o implementar cookie para el ultimo path
-            ctx.redirect("/html/inicio.html");
+            ctx.redirect("/home");
 
         });
 
@@ -67,7 +84,7 @@ public class Login extends BaseController{
             ctx.req().getSession().invalidate();
 
             // Redirect al inicio o implementar cookie para el ultimo path
-            ctx.redirect("/html/inicio.html");
+            ctx.redirect("/home");
         });
     }
 }

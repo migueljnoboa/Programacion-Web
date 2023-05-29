@@ -31,6 +31,10 @@ public class Data {
         return newUser;
     }
 
+    public List<Article> getArticles() {
+        return articles;
+    }
+
     public User findUser(String username, String password) {
 
         for (User u : users){

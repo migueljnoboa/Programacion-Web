@@ -1,7 +1,15 @@
 package org.example.Controlers;
 
 import io.javalin.Javalin;
+import io.javalin.http.Context;
 import org.example.Data.Data;
+import org.example.Data.User;
+import org.example.Data.Article;
+import org.example.Data.Tag;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public class Inicio extends BaseController{
 
@@ -12,8 +20,21 @@ public class Inicio extends BaseController{
     @Override
     public void applyPaths() {
 
-        app.before("/", ctx -> {
-            ctx.redirect("/html/inicio.html");
+        // Redirect to Home
+        app.before("/", ctx -> ctx.redirect("/home"));
+
+        // Go to Home
+        app.get("home",ctx -> {
+
+            // Thymeleaf
+            Map<String,Object> map = getBasicMap(ctx);
+
+            map.put("articles", Data.getInstance().getArticles());
+
+            // Go to inicio.html
+            ctx.render("public/html/inicio.html", map);
+
         });
     }
+
 }

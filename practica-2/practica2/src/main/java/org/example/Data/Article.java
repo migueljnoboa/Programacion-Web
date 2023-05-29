@@ -80,4 +80,20 @@ public class Article {
     public void setTags(List<Tag> tags) {
         this.tags = tags;
     }
+
+    // Used to preview the body of an article
+    public String getBodyView () {
+
+        int len = body.length();
+        if (len < 350){
+            return this.body.substring(0,len);
+        }
+        return this.body.substring(0,350) + "...";
+    }
+
+    //Obtain the path for the article
+    public String getPath () {
+        return "/view/" + this.id;
+    }
+
 }

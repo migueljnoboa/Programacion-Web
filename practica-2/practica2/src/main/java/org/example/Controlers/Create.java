@@ -7,6 +7,7 @@ import org.example.Data.Tag;
 import org.example.Data.User;
 
 import java.util.List;
+import java.util.Map;
 
 public class Create extends BaseController{
     public Create(Javalin app) {
@@ -17,13 +18,23 @@ public class Create extends BaseController{
     public void applyPaths() {
 
         // Verificando que tenga una session iniciada
-        app.before("/html/create-blog.html", ctx -> {
+        app.before("/create", ctx -> {
             User user = ctx.sessionAttribute("user");
             if (user == null){
-                ctx.redirect("log-in.html");
+                ctx.redirect("/home");
             }
         });
 
+        app.get("/create", ctx -> {
+
+            // Thymeleaf
+            Map<String,Object> map = getBasicMap(ctx);
+
+            // Go to inicio.html
+            ctx.render("public/html/create.html", map);
+        });
+
+        // POST create -> view
         app.post("/post-create-blog", ctx -> {
 
             String title = ctx.formParam("titlearticle");
@@ -34,8 +45,8 @@ public class Create extends BaseController{
 
             Article a = Data.getInstance().addArticle(title, body, author, tagsStringList);
 
+            ctx.redirect("/view/" + a.getId());
+
         });
-
-
     }
 }
