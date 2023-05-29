@@ -3,6 +3,7 @@ package org.example.Controlers;
 import io.javalin.Javalin;
 import org.example.Data.Article;
 import org.example.Data.Data;
+import org.example.Data.User;
 
 import java.util.Map;
 
@@ -27,6 +28,8 @@ public class View extends BaseController{
 
         app.get("/view/{articleId}", ctx -> {
 
+            User user = ctx.sessionAttribute("user");
+
             // Creating map
             Map<String,Object> map = getBasicMap(ctx);
 
@@ -35,10 +38,34 @@ public class View extends BaseController{
             long id = Long.parseLong(idStr);
             Article a = Data.getInstance().findArticle(id);
 
+            String deletePath = "/delete/" + idStr;
+
+            String deleteType = "hidden";
+
+            if (user != null){
+                if (user.getAuthor() || user.getAdministrator()){
+                    deleteType = "button";
+                }
+            }
+
             // Adding article to map
             map.put("a", a);
 
+            // Adding deletePath to map
+            map.put("deletePath", deletePath);
+
+            // Adding the visibility of the button to the path (deleteType)
+            map.put("deleteType", deleteType);
+
+            // Render view.html with thymeleaf with the map
             ctx.render("public/html/view.html", map);
+
+        });
+
+        app.before("/delete/{articleId}", ctx -> {
+
+            Data.getInstance().deleteArticle(ctx.pathParam("articleId"));
+            ctx.redirect("/home");
 
         });
     }

@@ -40,6 +40,8 @@ public class Main {
 
         new View(app).applyPaths();
 
+        new Admin(app).applyPaths();
+
         Data.getInstance().findUser("admin","admin").getName();
     }
 }

@@ -35,9 +35,16 @@ public abstract class BaseController {
             signUpText = "Log Out";
             signUpPath = "/invalidate";
         }
+
+        String admin = "";
+        if (user.getAdministrator()){
+            admin = "text";
+        }
+
         map.put("loginText", loginText);
         map.put("signUpText", signUpText);
         map.put("signUpPath", signUpPath);
+        map.put("admin", admin);
 
         return map;
     }

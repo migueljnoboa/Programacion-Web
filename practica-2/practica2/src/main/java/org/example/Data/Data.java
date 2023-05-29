@@ -106,4 +106,16 @@ public class Data {
         findArticle(article.getId()).getComments().add(newComment);
         return newComment;
     }
+
+    public void deleteArticle(String articleIdStr){
+        int i = 0;
+        Long id = Long.parseLong(articleIdStr);
+
+        for (i = 0 ; i < articles.size() ; i++){
+            if (articles.get(i).getId() == id){
+                articles.remove(i);
+                return;
+            }
+        }
+    }
 }

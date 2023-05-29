@@ -85,10 +85,10 @@ public class Article {
     public String getBodyView () {
 
         int len = body.length();
-        if (len < 350){
+        if (len < 70){
             return this.body.substring(0,len);
         }
-        return this.body.substring(0,350) + "...";
+        return this.body.substring(0,70) + "...";
     }
 
     //Obtain the path for the article

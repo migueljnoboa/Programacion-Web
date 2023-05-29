@@ -7,9 +7,7 @@ import org.example.Data.User;
 import org.example.Data.Article;
 import org.example.Data.Tag;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public class Inicio extends BaseController{
 
@@ -29,7 +27,10 @@ public class Inicio extends BaseController{
             // Thymeleaf
             Map<String,Object> map = getBasicMap(ctx);
 
-            map.put("articles", Data.getInstance().getArticles());
+            List<Article> articles = Data.getInstance().getArticles();
+            Collections.reverse(articles);
+            map.put("articles", articles);
+            Collections.reverse(articles);
 
             // Go to inicio.html
             ctx.render("public/html/inicio.html", map);

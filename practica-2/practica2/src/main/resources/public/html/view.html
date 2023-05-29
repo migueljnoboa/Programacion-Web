@@ -25,6 +25,8 @@
                     <li><a href="/create" class="nav-link px-2 text-white">Create</a></li>
                 </ul>
 
+
+
                 <div class="text-end">
                     <a href="/login"><input type="button" class="btn btn-outline-light me-2" th:value="${loginText}"></a>
                     <a th:href="${signUpPath}"><input type="button" class="btn btn-warning" th:value="${signUpText}"></a>
@@ -49,6 +51,10 @@
             <span class="badge text-bg-warning rounded-pill article-tag m-1" th:each="t : ${a.tags}" th:text="${t.getTag()}">Tags</span>
         </div>
 
+        <!-- Erase Button -->
+        <a th:href="${deletePath}"><input class="btn btn-danger m-5"  th:type="${deleteType}"  value="Delete Article"></a>
+
+        <!-- Display comments -->
         <div class="article-comment my-4" th:each="c : ${a.getComments()}">
             <span class="h3" float="right" th:text="${c.getAuthor().getName()}">Title</span>
             <p class="mx-5 my-4 article-body text-justified" th:text="${c.getComment()}">Body</p>
