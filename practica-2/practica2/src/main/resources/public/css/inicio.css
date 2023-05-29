@@ -11,7 +11,7 @@ body {
 }
 
 .article-body {
-    font-size: 20px;
+    font-size: 22px;
     margin: auto;
     text-indent: 2rem;
     text-align: justify;
@@ -19,6 +19,12 @@ body {
 
 .article-tag {
     font-size: 12px;
+}
+
+.article-comment{
+    margin: auto;
+    text-indent: 5rem;
+    text-align: justify;
 }
 
 

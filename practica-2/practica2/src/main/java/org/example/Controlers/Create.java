@@ -30,6 +30,9 @@ public class Create extends BaseController{
             // Thymeleaf
             Map<String,Object> map = getBasicMap(ctx);
 
+            User authorName = ctx.sessionAttribute("user");
+            map.put("authorName",authorName.getName());
+
             // Go to inicio.html
             ctx.render("public/html/create.html", map);
         });

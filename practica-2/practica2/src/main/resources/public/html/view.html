@@ -40,12 +40,18 @@
 
     <!-- Modelo para los parrafos -->
     <div class="article py-4">
-        <span class=" h1 article-title text-center">Title</span><br>
-        <span class="m-3 h2 text-center">Author</span><br>
-        <p class="mx-5 my-4 article-body text-justified">Body</p>
+        <a><span class=" h1 article-title text-center" th:text="${a.title}">Title</span></a><br>
+        <span class="m-3 h2 text-center" th:text="${a.author.name}">Author</span><br>
+        <p class="mx-5 my-4 article-body text-justified" th:text="${a.body}">Body</p>
+
 
         <div class="d-flex justify-content-center gap-2 py-2">
-            <span class="badge text-bg-warning rounded-pill article-tag">Tags</span>
+            <span class="badge text-bg-warning rounded-pill article-tag m-1" th:each="t : ${a.tags}" th:text="${t.getTag()}">Tags</span>
+        </div>
+
+        <div class="article-comment my-4" th:each="c : ${a.getComments()}">
+            <span class="h3" float="right" th:text="${c.getAuthor().getName()}">Title</span>
+            <p class="mx-5 my-4 article-body text-justified" th:text="${c.getComment()}">Body</p>
         </div>
     </div>
 

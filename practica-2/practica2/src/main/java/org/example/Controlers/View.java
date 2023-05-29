@@ -22,8 +22,6 @@ public class View extends BaseController{
             Article a = Data.getInstance().findArticle(id);
             if (a == null) {
                 ctx.redirect("/home");
-            }else{
-
             }
         });
 
@@ -38,7 +36,7 @@ public class View extends BaseController{
             Article a = Data.getInstance().findArticle(id);
 
             // Adding article to map
-            map.put("article", a);
+            map.put("a", a);
 
             ctx.render("public/html/view.html", map);
 

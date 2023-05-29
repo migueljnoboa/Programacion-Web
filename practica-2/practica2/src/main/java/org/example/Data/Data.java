@@ -11,10 +11,10 @@ public class Data {
     private List<User> users = new ArrayList<>();;
     private List<Article> articles = new ArrayList<>();;
     private List<Tag> tags = new ArrayList<>();;
-    private List<Comment> comments = new ArrayList<>();
 
     private long idArticle = 0;
     private long idTag = 0;
+    private long idComment = 0;
     private static Data data = null;
 
     public static Data getInstance(){
@@ -47,6 +47,8 @@ public class Data {
 
     public Tag addTag(String tag){
         Tag newTag = new Tag(idTag+1, tag);
+        this.idTag = idTag + 1;
+
         tags.add(newTag);
         return newTag;
     }
@@ -83,6 +85,7 @@ public class Data {
         List<Tag> tags = addTagsToArticle(tagsListString);
 
         Article newArticle = new Article(idArticle+1, title, body, author, new Date(), new ArrayList<>(), tags);
+        this.idArticle = idArticle + 1;
         articles.add(newArticle);
         return newArticle;
     }
@@ -95,5 +98,12 @@ public class Data {
             }
         }
         return null;
+    }
+
+    public Comment addComment(String comment, User author, Article article) {
+        Comment newComment = new Comment(idComment + 1, comment, author, article);
+        this.idComment = idComment + 1;
+        findArticle(article.getId()).getComments().add(newComment);
+        return newComment;
     }
 }
