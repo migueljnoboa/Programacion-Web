@@ -46,12 +46,12 @@
 
         <!-- Title and author -->
         <div class="text-center">
-            <a><span class=" h1 article-title text-center" th:text="${a.title}">Title</span></a><br>
+            <a><span class=" h1 article-title text-center mx-5 my-3" th:text="${a.title}">Title</span></a><br>
             <span class="m-3 h2 text-center" th:text="${a.author.name}">Author</span><br>
         </div>
 
         <!-- Text -->
-        <div>
+        <div class="mx-5">
             <p class="mx-5 my-4 article-body text-justified" th:text="${a.body}">Body</p>
         </div>
 
@@ -69,15 +69,17 @@
         <div class="m-5">
             <span class="my-3 h2 text-center">Comments</span><br>
 
-            <form action="/make-comment" method="post">
-                <textarea class="form-control my-3" id="comment-Body" name="comment-Body" rows="3" placeholder="Write a Comment..."></textarea>
-                <input type="submit" class="btn btn-primary my-3" value="Send">
-            </form>
+            <div th:class="${comment}">
+                <form action="/make-comment" method="post">
+                    <textarea class="form-control my-3"  id="comment-Body" name="comment-Body" rows="3" placeholder="Write a Comment..."></textarea>
+                    <input type="submit" class="btn btn-primary my-3" value="Send">
+                </form>
+            </div>
         </div>
 
         <!-- Display comments -->
-        <div class="article-comment my-4" th:each="c : ${a.getComments()}">
-            <span class="h3" float="right" th:text="${c.getAuthor().getName()}">Comment Author</span>
+        <div class="article-comment my-4 mx-5" th:each="c : ${a.getComments()}">
+            <span class="h3" float="right mx-5" th:text="${c.getAuthor().getName()}">Comment Author</span>
             <p class="mx-5 my-4 article-body text-justified" th:text="${c.getComment()}">Comment Body</p>
         </div>
     </div>

@@ -38,13 +38,13 @@
     </head>
 
     <body class="bg-dark">
-        <main class="article text-center bg-dark bg-gradient white">
+        <main class="article text-center bg-dark bg-gradient white justify-content-center">
 
             <!-- Modelo para los parrafos -->
-            <div class="article-comment article py-4" th:each="a : ${articles}">
-                <a th:href="${a.getPath()}"><span class=" h1 article-title text-center" th:text="${a.title}">Title</span></a><br>
+            <div class="article py-4 text-center mx-5" th:each="a : ${articles}">
+                <a th:href="${a.getPath()}"><span class=" h1 article-title text-center mx-5 my-3" th:text="${a.title}">Title</span></a><br>
                 <span class="m-3 h2 text-center" th:text="${a.author.name}">Author</span><br>
-                <p class="mx-5 my-4 article-body text-justified" th:text="${a.getBodyView()}">Body</p>
+                <p class="mx-5 my-4 article-body text-center" th:text="${a.getBodyView()}">Body</p>
 
 
                 <div class="d-flex justify-content-center gap-2 py-2">

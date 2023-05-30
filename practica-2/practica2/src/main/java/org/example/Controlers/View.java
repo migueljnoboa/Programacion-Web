@@ -38,11 +38,16 @@ public class View extends BaseController{
             long id = Long.parseLong(idStr);
             Article a = Data.getInstance().findArticle(id);
 
+            // Delete Button
             String deletePath = "/delete/" + idStr;
-
             String deleteType = "hidden";
 
+            // Write a Comment
+            String comment = "d-none";
+
+
             if (user != null){
+                comment = "";
                 if (user.getAuthor() || user.getAdministrator()){
                     deleteType = "button";
                 }
@@ -50,12 +55,10 @@ public class View extends BaseController{
 
             // Adding article to map
             map.put("a", a);
-
-            // Adding deletePath to map
+            // Delete Button
             map.put("deletePath", deletePath);
-
-            // Adding the visibility of the button to the path (deleteType)
             map.put("deleteType", deleteType);
+            map.put("comment", comment);
 
             // Render view.html with thymeleaf with the map
             ctx.render("public/html/view.html", map);
@@ -72,8 +75,6 @@ public class View extends BaseController{
         });
 
         app.before("/make-comment", ctx -> {
-
-            System.out.println(ctx.cookie("articleId"));
 
             String idStr = ctx.cookie("articleId");
             User user = ctx.sessionAttribute("user");

@@ -30,10 +30,9 @@ public class Inicio extends BaseController{
             List<Article> articles = Data.getInstance().getArticles();
             Collections.reverse(articles);
             map.put("articles", articles);
-            Collections.reverse(articles);
-
             // Go to inicio.html
             ctx.render("public/html/inicio.html", map);
+            Collections.reverse(articles);
 
         });
     }

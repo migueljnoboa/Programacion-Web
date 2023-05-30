@@ -21,10 +21,8 @@ body {
     font-size: 12px;
 }
 
-.article-comment{
-    margin: auto;
-    text-indent: 5rem;
-    text-align: justify;
+.article-comment-hidden{
+    display: none;
 }
 
 

@@ -23,6 +23,9 @@ public class Create extends BaseController{
             if (user == null){
                 ctx.redirect("/home");
             }
+            if (!user.getAuthor()){
+                ctx.redirect("/home");
+            }
         });
 
         app.get("/create", ctx -> {
