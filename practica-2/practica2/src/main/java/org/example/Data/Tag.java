@@ -4,6 +4,12 @@ public class Tag {
     private long id;
     private String tag;
 
+    public Tag(long id, String tag){
+        super();
+        this.id = id;
+        this.tag = tag;
+    }
+
     public String getTag() {
         return tag;
     }

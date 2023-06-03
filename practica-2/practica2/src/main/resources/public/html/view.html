@@ -1,0 +1,95 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>View Article</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+
+    <!-- CSS FILE -->
+    <link rel="stylesheet" href="../css/inicio.css" type="text/css">
+
+
+    <!-- Header of the page -->
+    <header class="p-3 text-bg-dark">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+                <a href="/home">
+                    <svg class="align-self-center img-fluid" width="40" height="40" role="img" aria-label="Blog Spot">
+                        <img src="../img/blog-spot-logo.png" class="logo img-fluid align-self-center" alt="Blog Spot" width="40" height="40"></svg>
+                </a>
+
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="/home" class="nav-link px-2 text-white">Home</a></li>
+                    <li><a href="/create" class="nav-link px-2 text-white">Create</a></li>
+                    <li><a href="/admin" th:text="${admin}" class="nav-link px-2 text-white"></a></li>
+                </ul>
+
+
+
+                <div class="text-end">
+                    <a href="/login"><input type="button" class="btn btn-outline-light me-2" th:value="${loginText}"></a>
+                    <a th:href="${signUpPath}"><input type="button" class="btn btn-warning" th:value="${signUpText}"></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+</head>
+
+<body class="bg-dark">
+<main class="article bg-dark bg-gradient white">
+
+    <!-- Modelo para los parrafos -->
+    <div class="article py-4">
+
+        <!-- Title and author -->
+        <div class="text-center">
+            <a><span class=" h1 article-title text-center mx-5 my-3" th:text="${a.title}">Title</span></a><br>
+            <span class="m-3 h2 text-center" th:text="${a.author.name}">Author</span><br>
+        </div>
+
+        <!-- Text -->
+        <div class="mx-5">
+            <p class="mx-5 my-4 article-body text-justified" th:text="${a.body}">Body</p>
+        </div>
+
+        <!-- Tags -->
+        <div class="d-flex justify-content-center gap-2 py-2">
+            <span class="badge text-bg-warning rounded-pill article-tag m-1" th:each="t : ${a.tags}" th:text="${t.getTag()}">Tags</span>
+        </div>
+
+        <!-- Erase Button -->
+        <div>
+            <a th:href="${deletePath}"><input class="btn btn-danger m-5"  th:type="${deleteType}"  value="Delete Article"></a>
+        </div>
+
+        <!-- Make Comment -->
+        <div class="m-5">
+            <span class="my-3 h2 text-center">Comments</span><br>
+
+            <div th:class="${comment}">
+                <form action="/make-comment" method="post">
+                    <textarea class="form-control my-3"  id="comment-Body" name="comment-Body" rows="3" placeholder="Write a Comment..."></textarea>
+                    <input type="submit" class="btn btn-primary my-3" value="Send">
+                </form>
+            </div>
+        </div>
+
+        <!-- Display comments -->
+        <div class="article-comment my-4 mx-5" th:each="c : ${a.getComments()}">
+            <span class="h3" float="right mx-5" th:text="${c.getAuthor().getName()}">Comment Author</span>
+            <p class="mx-5 my-4 article-body text-justified" th:text="${c.getComment()}">Comment Body</p>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
+</main>
+
+</body>
+
+</html>

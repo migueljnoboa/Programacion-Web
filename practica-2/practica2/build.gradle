@@ -19,6 +19,12 @@ dependencies {
     implementation("io.javalin:javalin:5.5.0")
 
     implementation("org.slf4j:slf4j-simple:2.0.7")
+
+    implementation 'org.freemarker:freemarker:2.3.32'
+
+    implementation 'org.thymeleaf:thymeleaf:3.1.1.RELEASE'
+
+    implementation("io.javalin:javalin-rendering:5.5.0")
 }
 
 test {

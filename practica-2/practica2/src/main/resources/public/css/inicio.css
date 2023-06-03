@@ -1,0 +1,28 @@
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+}
+
+.white {
+    color: white;
+}
+
+.article-body {
+    font-size: 22px;
+    margin: auto;
+    text-indent: 2rem;
+    text-align: justify;
+}
+
+.article-tag {
+    font-size: 12px;
+}
+
+.article-comment-hidden{
+    display: none;
+}
+
+

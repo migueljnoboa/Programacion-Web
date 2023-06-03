@@ -1,11 +1,21 @@
 package org.example.Data;
 
+import java.awt.*;
+
 public class Comment {
 
     private long id;
     private String comment;
     private User author;
     private Article article;
+
+    public Comment(long id, String comment, User author, Article article){
+        super();
+        this.id = id;
+        this.comment = comment;
+        this.author = author;
+        this.article = article;
+    }
 
     public long getId() {
         return id;

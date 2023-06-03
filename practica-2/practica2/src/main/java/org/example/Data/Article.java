@@ -11,9 +11,19 @@ public class Article {
     private String body;
     private User author;
     private Date date;
-
-    private List<Comment> comments = new ArrayList<>();;
+    private List<Comment> comments = new ArrayList<>();
     private List<Tag> tags;
+
+    public Article(long id, String title, String body, User author, Date date, List<Comment> comments, List<Tag> tags){
+        super();
+        this.id = id;
+        this.title = title;
+        this.body = body;
+        this.author = author;
+        this.date = date;
+        this.comments = comments;
+        this.tags = tags;
+    }
 
     public long getId() {
         return id;
@@ -70,4 +80,20 @@ public class Article {
     public void setTags(List<Tag> tags) {
         this.tags = tags;
     }
+
+    // Used to preview the body of an article
+    public String getBodyView () {
+
+        int len = body.length();
+        if (len < 70){
+            return this.body.substring(0,len);
+        }
+        return this.body.substring(0,70) + "...";
+    }
+
+    //Obtain the path for the article
+    public String getPath () {
+        return "/view/" + this.id;
+    }
+
 }
