@@ -37,7 +37,7 @@ dependencies {
 
     //libreria para SOAP de Jetty https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-http-spi
     implementation group: 'org.eclipse.jetty', name: 'jetty-http-spi', version: '11.0.13'
-
+    implementation 'com.h2database:h2:2.1.214'
 }
 
 test {

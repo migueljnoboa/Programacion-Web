@@ -5,6 +5,7 @@ import org.example.encapsulaciones.Usuario;
 import org.example.util.NoExisteEstudianteException;
 import org.example.util.RolesApp;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -15,6 +16,8 @@ import java.util.Set;
 public class FakeServices {
 
     private static FakeServices instancia;
+
+    EstudianteServices estudianteServices = new EstudianteServices();
     private List<Estudiante> listaEstudiante = new ArrayList<>();
     private List<Usuario> listaUsuarios = new ArrayList<>();
 
@@ -53,25 +56,29 @@ public class FakeServices {
         return listaUsuarios;
     }
 
-    public List<Estudiante> listarEstudiante(){
-        return listaEstudiante;
+    public List<Estudiante> listarEstudiante() throws SQLException {
+
+
+        return estudianteServices.listaEstudiantes();
     }
 
-    public Estudiante getEstudiantePorMatricula(int matricula){
-        return listaEstudiante.stream().filter(e -> e.getMatricula() == matricula).findFirst().orElse(null);
+    public Estudiante getEstudiantePorMatricula(int matricula) throws SQLException {
+
+        return estudianteServices.getEstudiante(matricula);
     }
 
-    public Estudiante crearEstudiante(Estudiante estudiante){
-        if(getEstudiantePorMatricula(estudiante.getMatricula())!=null){
+    public Estudiante crearEstudiante(Estudiante estudiante) throws SQLException {
+
+        if (estudianteServices.getEstudiante(estudiante.getMatricula()) != null){
             System.out.println("Estudiante registrado...");
             return null; //generar una excepcion...
         }
-        listaEstudiante.add(estudiante);
+        estudianteServices.crearEstudiante(estudiante);
         return estudiante;
     }
 
-    public Estudiante actualizarEstudiante(Estudiante estudiante){
-        Estudiante tmp = getEstudiantePorMatricula(estudiante.getMatricula());
+    public Estudiante actualizarEstudiante(Estudiante estudiante) throws SQLException {
+        Estudiante tmp = estudianteServices.getEstudiante(estudiante.getMatricula());
         if(tmp == null){//no existe, no puede se actualizado
             throw new NoExisteEstudianteException("No Existe el estudiante: "+estudiante.getMatricula());
         }
@@ -79,10 +86,10 @@ public class FakeServices {
         return tmp;
     }
 
-    public boolean eliminandoEstudiante(int matricula){
-        Estudiante tmp = new Estudiante();
-        tmp.setMatricula(matricula);
-        return listaEstudiante.remove(tmp);
+    public boolean eliminandoEstudiante(int matricula) throws SQLException {
+
+        boolean tmp = estudianteServices.borrarEstudiante(matricula);
+        return tmp;
     }
 
 }
