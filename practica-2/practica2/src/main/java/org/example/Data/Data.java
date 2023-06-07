@@ -15,6 +15,8 @@ public class Data {
     private long idArticle = 0;
     private long idTag = 0;
     private long idComment = 0;
+
+    private long idUser = 0;
     private static Data data = null;
 
     public static Data getInstance(){
@@ -24,9 +26,14 @@ public class Data {
         return data;
     }
 
+    public List<User> getUsers() {
+        return users;
+    }
+
     // Creating new User
     public User addUser(String username, String password, String name){
-        User newUser = new User(username, password, name, Boolean.FALSE, Boolean.FALSE);
+        this.idUser += 1;
+        User newUser = new User(idUser, username, password, name, Boolean.FALSE, Boolean.FALSE);
         users.add(newUser);
         return newUser;
     }
@@ -39,6 +46,16 @@ public class Data {
 
         for (User u : users){
             if (u.getUsername().equals(username) && u.getPassword().equals(password)){
+                return u;
+            }
+        }
+        return null;
+    }
+
+    public User findUser(String userId) {
+
+        for (User u : users){
+            if (u.getId() == Long.parseLong(userId)){
                 return u;
             }
         }
