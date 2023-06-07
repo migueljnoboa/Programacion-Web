@@ -57,6 +57,7 @@ public class Admin extends BaseController{
                 user.makeAuthor();
             }
             ctx.redirect("/admin");
+
         });
 
         // Permission Admin
