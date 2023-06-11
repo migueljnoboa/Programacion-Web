@@ -82,7 +82,7 @@ public class FakeServices {
         if(tmp == null){//no existe, no puede se actualizado
             throw new NoExisteEstudianteException("No Existe el estudiante: "+estudiante.getMatricula());
         }
-        tmp.mezclar(estudiante);
+        estudianteServices.actualizarEstudiante(estudiante);
         return tmp;
     }
 
