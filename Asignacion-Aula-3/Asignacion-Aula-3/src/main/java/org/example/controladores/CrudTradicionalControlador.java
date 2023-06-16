@@ -51,6 +51,9 @@ public class CrudTradicionalControlador extends BaseControlador {
             });
         });
         app.routes(() -> {
+
+            app.get("/", ctx -> {ctx.redirect("/crud-simple/listar");});
+
             path("/crud-simple/", () -> {
 
 

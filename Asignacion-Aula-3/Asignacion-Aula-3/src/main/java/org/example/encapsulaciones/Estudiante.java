@@ -7,11 +7,15 @@ import jakarta.persistence.*;
 /**
  * Objeto con estructura POJO.
  */
+
+@Entity
 public class Estudiante implements Serializable {
 
     @Id
     private int matricula;
+    @Column
     private String nombre;
+    @Column
     private String carrera;
 
     public Estudiante() {
@@ -45,12 +49,6 @@ public class Estudiante implements Serializable {
 
     public void setCarrera(String carrera) {
         this.carrera = carrera;
-    }
-
-    public void mezclar(Estudiante e){
-        matricula = e.getMatricula();
-        nombre = e.getNombre();
-        carrera = e.getCarrera();
     }
 
     @Override

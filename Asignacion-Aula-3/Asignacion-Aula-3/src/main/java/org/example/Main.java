@@ -35,16 +35,6 @@ public class Main {
 
         new CrudTradicionalControlador(app).aplicarRutas();
 
-        //Iniciando el servicio
-        BootStrapServices.startDb();
-
-        //Prueba de Conexión.
-        DataBaseServices.getInstancia().testConexion();
-
-        BootStrapServices.crearTablas();
-
-        BootStrapServices.stopDb();
-
     }
 
     public static String getModoConexion(){

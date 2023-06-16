@@ -2,7 +2,7 @@
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
     <persistence-unit name="MiUnidadPersistencia" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <class>org.example.encapsulaciones.Estudiante/class>
+        <class>org.example.encapsulaciones.Estudiante</class>
         <!--
         <class>edu.pucmm.eict.ormjpa.entidades.Profesor</class>
         <class>edu.pucmm.eict.ormjpa.entidades.GrupoClase</class>
@@ -15,10 +15,10 @@
 
         <properties>
             <!--<property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:test" />-->
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/ormjpa" />
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:h2:~/DB/asignacion-aula-3" />
             <property name="jakarta.persistence.jdbc.driver" value="org.h2.Driver" />
             <property name="jakarta.persistence.jdbc.user" value="sa" />
-            <property name="jakarta.persistence.jdbc.password" value="" />
+            <property name="jakarta.persistence.jdbc.password" value="sa" />
             <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
             <!--<property name="hibernate.hbm2ddl.auto" value="create" />-->
             <property name="hibernate.show_sql" value="true"/>
@@ -29,18 +29,18 @@
         </properties>
     </persistence-unit>
     <!--Puedo tener varias unidades de persistencia en función a la conexión que necesito-->
-    <persistence-unit name="Heroku" transaction-type="RESOURCE_LOCAL">
+<!--    <persistence-unit name="Heroku" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>org.example.encapsulaciones.Estudiante</class>
 
-        <!--
+        &lt;!&ndash;
         <class>edu.pucmm.eict.ormjpa.entidades.Profesor</class>
         <class>edu.pucmm.eict.ormjpa.entidades.GrupoClase</class>
         <class>edu.pucmm.eict.ormjpa.entidades.Foto</class>
         <class>edu.pucmm.eict.ormjpa.entidades.Cliente</class>
         <class>edu.pucmm.eict.ormjpa.entidades.Factura</class>
         <class>edu.pucmm.eict.ormjpa.entidades.ClienteFactura</class>
-        -->
+        &ndash;&gt;
 
         <properties>
             <property name="hibernate.archive.autodetection" value="class"/>
@@ -48,10 +48,10 @@
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL9Dialect"/>
             <property name="hibernate.hbm2ddl.auto" value="update" />
             <property name="hibernate.show_sql" value="true"/>
-            <!-- Indica como será la generación de las tablas en el motor-->
-            <!-- ver la documentación: https://docs.oracle.com/javaee/7/tutorial/persistence-intro005.htm -->
+            &lt;!&ndash; Indica como será la generación de las tablas en el motor&ndash;&gt;
+            &lt;!&ndash; ver la documentación: https://docs.oracle.com/javaee/7/tutorial/persistence-intro005.htm &ndash;&gt;
             <property name="jakarta.persistence.schema-generation.database.action" value="update"/>
-            <!--<property name="eclipselink.logging.level" value="ALL" />-->
+            &lt;!&ndash;<property name="eclipselink.logging.level" value="ALL" />&ndash;&gt;
         </properties>
-    </persistence-unit>
+    </persistence-unit>-->
 </persistence>
